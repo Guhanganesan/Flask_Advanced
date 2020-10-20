@@ -8,13 +8,18 @@
 </head>
 <body>
     <div class="container-fluid" >
-        <h2>Welcome {{user}} </h2>
-        <a href='/concepts'>Visit</a>
-        <h3>Example for images</h3>
-        <img src='static/images/dove.jpg' widh="200" height="200">
-        {% block content %} 
-        {% endblock %}
+       {%extends "index.html" %} 
+        {%block content%} 
         
+        <h1>List of elements</h1> 
+
+        <ol> 
+            {%for i in range(0, len)%} 
+            <li>{{mylist[i]}}</li> 
+            {%endfor%} 
+        </ol> 
+        {% endblock %}
+
     </div>
 
 </body>
