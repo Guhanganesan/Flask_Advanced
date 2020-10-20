@@ -2,10 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="static/css/bootstrap.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <h2>Welcome Guhan Ganesan </h2>
+    <div class="container-fluid" >
+        <h2>Welcome {{user}} </h2>
+
+        <h3>Example for images</h3>
+        <img src='static/images/dove.jpg' widh="200" height="200">
+
+        <br><br>
+
+        <img src="{{url_for('static', filename='dove.jpg')}}" widh="200" height="200">
+        <br>
+
+
+
+    </div>
+
 </body>
 </html>
+
