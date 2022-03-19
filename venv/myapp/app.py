@@ -1,9 +1,18 @@
 import os
 import psycopg2
 from flask import Flask, render_template, url_for, request
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
 app = Flask(__name__)
 
 List = ["Raja","Anbu","Ganesan","Guhan"]
+
+#Load Environment Variables
+user = os.environ.get("DB_USER")
+password = os.environ.get("DB_PASS")
 
 @app.route('/test')
 def test():
@@ -26,10 +35,12 @@ def concept():
 
 
 def get_db_connection():
+
+    # Connect to PostreSQL Database
     conn = psycopg2.connect(host='localhost',
                             database='test',
-                            user="postgres",
-                            password="1234")
+                            user=user,
+                            password=password)
     return conn
 
 @app.route('/get_db')
