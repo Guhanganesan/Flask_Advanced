@@ -1,7 +1,8 @@
 import os
 import psycopg2
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, url_for, request, jsonify
 from dotenv import load_dotenv
+from flask_cors import cross_origin
 
 load_dotenv()
 
@@ -43,7 +44,8 @@ def get_db_connection():
                             password=password)
     return conn
 
-@app.route('/get_db')
+@app.route('/get_employee')
+@cross_origin()
 def get_db():
     conn = get_db_connection()
     cur = conn.cursor()
@@ -52,7 +54,25 @@ def get_db():
     cur.close()
     conn.close()
     print(emp)
-    return render_template('index.html', employee=emp)
-	
+    #return render_template('index.html', employee=emp)
+    emp_data = []
+  
+    for emp in emp:
+            print(emp[0])
+            print(emp[1])
+            print(emp[2])
+            print(emp[3])
+            print(emp[4])
+            temp = {"id":emp[0],"name":emp[1], "age":emp[2], "address":emp[3], "salary":emp[4]}
+            emp_data.append(temp)
+
+    return jsonify({
+        "status":"success",
+        "data": emp_data
+    })
+        
+        
+
+
 if __name__=="__main__":
   app.run(debug = True)

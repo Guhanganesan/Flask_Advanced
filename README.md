@@ -14,3 +14,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 `
+
+# Install Flask CORS
+
+-> pip install flask-cors
