@@ -1,0 +1,17 @@
+venv/Lib/site-packages/Flask_RESTful-0.3.8.dist-info/
+venv/Lib/site-packages/__pycache__/six.cpython-38.pyc
+venv/Lib/site-packages/aniso8601-8.0.0.dist-info/
+venv/Lib/site-packages/aniso8601/
+venv/Lib/site-packages/flask_restful
+venv/Lib/site-packages/google/
+venv/Lib/site-packages/mysql/
+venv/Lib/site-packages/mysql_connector_python-8.0.22.dist-info/
+venv/Lib/site-packages/mysqlx/
+venv/Lib/site-packages/protobuf-3.13.0-nspkg.pth
+venv/Lib/site-packages/protobuf-3.13.0.dist-info/
+venv/Lib/site-packages/pytz-2020.1.dist-info/
+venv/Lib/site-packages/pytz/
+venv/Lib/site-packages/six-1.15.0.dist-info/
+venv/Lib/site-packages/six.py
+venv/Lib/site-packages/wheel/__pycache__/
+venv/myapp/.env
