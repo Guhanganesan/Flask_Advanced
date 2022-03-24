@@ -18,3 +18,7 @@ load_dotenv()
 # Install Flask CORS
 
 -> pip install flask-cors
+
+# JSON Schema
+
+-> pip install jsonschema

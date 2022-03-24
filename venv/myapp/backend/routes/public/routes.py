@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_cors import cross_origin
-from backend.wrappers import add_app_url_map_converter, RegexConverter, track_time_spent
+from backend.wrappers import add_app_url_map_converter, RegexConverter, track_time_spent, required
 
 from database.connection import get_db_connection
 
@@ -84,3 +84,21 @@ def publish_employee_details():
             "status":"error",
             "msg": "Error while submitting data. please check connection"
         })      
+
+
+@bp.route('/submit_info', methods=['POST'])
+@required({
+    "type": "object",
+    "properties": {
+        "id":{"type":"integer"},
+        "name":{"type":"string"},
+        "info":{"type":"object"}
+    },
+    "required":["id","name","info"]
+})
+
+def submit_info(body):
+
+    print(body)
+
+    return "Test"
