@@ -1,6 +1,9 @@
-from flask import Blueprint, jsonify, request
+import jwt
+import datetime
+from flask import Blueprint, jsonify, request, make_response
 from flask_cors import cross_origin
-from backend.wrappers import add_app_url_map_converter, RegexConverter, track_time_spent, required
+from backend.wrappers import add_app_url_map_converter, RegexConverter, track_time_spent, required, \
+token_required
 
 from database.connection import get_db_connection
 
@@ -13,6 +16,7 @@ bp = Blueprint('myblueprint', __name__, url_prefix="/v1")
 
 bp.add_app_url_map_converter(RegexConverter, 'regex')
 
+
 @bp.route("/test_public_routes", methods=["GET"])
 def test_public_routes():
     return "Hello, I am new test routes...."
@@ -23,6 +27,14 @@ def test_public_routes():
 def foo():
     print("foo")
     return "foo"
+
+@bp.route("/test_token", methods=["POST"])
+@cross_origin()
+@token_required
+def test_token(token):
+
+    return "Guhan Ganesan"
+
 
 
 @bp.route('/get_employee')
