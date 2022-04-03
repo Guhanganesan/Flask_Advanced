@@ -69,7 +69,8 @@ def get_db():
 
 @bp.route('/publish_employee', methods=['POST'])
 @cross_origin()
-def publish_employee_details():
+@token_required
+def publish_employee_details(token):
     try:
         print("====================")
         body = request.get_json()

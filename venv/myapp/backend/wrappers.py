@@ -93,7 +93,7 @@ def token_required(f):
         token = None
         user = None
         secret_key = os.environ.get("SECRET_KEY")
-        print(secret_key)
+        #print(secret_key)
         
         """
         Postman Headers:
@@ -103,16 +103,18 @@ def token_required(f):
         """
         
         if 'x-access-user' in request.headers:
+            print(request.headers['Authorization']) #For Bearer token use
+            token = request.headers['Authorization']
             user = request.headers['x-access-user']
             #secret_key = os.environ.get("SECRET_KEY") if os.environ.get("SECRET_KEY") else request.headers['x-access-key']
             user_key = request.headers['x-access-key']
-            encoded = jwt.encode({'user': user,'key':user_key}, user_key, algorithm='HS256')
-            print(encoded)
+            encoded = jwt.encode({'user': user,'key':user_key, 'user_token':token}, user_key, algorithm='HS256')
+            #print(encoded)
             #eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiZ3VoYW4iLCJrZXkiOiJESkhLSkhTQUpISkZTQUhITEtTSktMREZTQUxLU0QifQ.2arwIepsSx7cgeyQZavjerXPEdqaNFEDwxdeKA_flQg
             # Verify in : https://jwt.io/
             decoded = jwt.decode(encoded,secret_key,algorithms="HS256")
-            print(decoded) # {'user': 'guhan', 'key': 'DJHKJHSAJHJFSAHHLKSJKLDFSALKSD'}
-            if decoded["key"] == request.headers['x-access-key']:
+            #print(decoded) # {'user': 'guhan', 'key': 'DJHKJHSAJHJFSAHHLKSJKLDFSALKSD'}
+            if decoded["key"] == request.headers['x-access-key'] and decoded["user_token"] == request.headers['Authorization']:
                 return f(user, *args, **kwargs)
             else:
                 return jsonify({"status":"error validating your key"})
