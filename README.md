@@ -1,5 +1,11 @@
 # Flask_Advanced
 
+# Requirement File
+
+-> pip freeze > requirements.txt
+-> pip install pipenv 
+-> pip install -r requirements.txt 
+
 # Install Psycopg2
 -> pip install psycopg2
 
@@ -49,4 +55,5 @@ open python console and verify it:
 >>> decoded
 {'some': 'payload'}
 >>>
+
 
